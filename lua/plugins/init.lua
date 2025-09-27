@@ -30,6 +30,14 @@ return {
       }
     end,
   },
+  -- mini icons
+  {
+    "echasnovski/mini.nvim",
+    config = function()
+      require("mini.icons").setup()
+    end,
+  },
+
   -- ToggleTerm
   {
     "akinsho/toggleterm.nvim",
@@ -261,5 +269,36 @@ return {
         "diagnostics",
       }
     end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+    },
+    event = "InsertEnter", -- lazy-load when you start typing
+    config = function()
+      require "config.cmp" -- just require your cmp.lua
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show { global = false }
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
   },
 }
