@@ -95,6 +95,9 @@ return {
   {
     "nvim-telescope/telescope-project.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension "project"
+    end,
   },
   -- Debug Adapter Protocol (DAP) plugins
 
@@ -295,7 +298,7 @@ return {
       {
         "<leader>?",
         function()
-          require("which-key").show { global = false }
+          require("which-key").show { global = true }
         end,
         desc = "Buffer Local Keymaps (which-key)",
       },

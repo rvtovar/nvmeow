@@ -63,3 +63,6 @@ map("n", "<S-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 map("n", "<S-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 map("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", { noremap = true, silent = true })
 map("n", "<leader>2", ":BufferLineGoToBuffer 2<CR>", { noremap = true, silent = true })
+
+-- Toggle Dashboard
+vim.keymap.set("n", "<leader>ad", ":lua require('helpers.dashboard').toggle()<CR>", { desc = "Toggle Dashboard" })

@@ -1,7 +1,6 @@
 require "config.lazy"
 vim.opt.clipboard = "unnamedplus"
 require "config.mappings"
-require "config.whichkey"
 vim.cmd "colorscheme duskfox"
 vim.opt.number = true
 vim.filetype.add {
