@@ -95,7 +95,7 @@ For a full list, see `lua/plugins/init.lua`.
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contributing and Support
 
 Pull requests and issues are welcome!
 
