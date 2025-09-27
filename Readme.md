@@ -107,4 +107,5 @@ MIT (see `LICENSE` file)
 
 ---
 
-_Made with ❤️ by [rvtovar](https://github.com/rvtovar)_
+_Made with ❤️ by [rvtovar](https://github.com/rvtovar)
+_[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
