@@ -38,6 +38,7 @@ local headers = {
 }
 
 local save_file = vim.fn.stdpath "data" .. "/dh.lua"
+local save_file = vim.fn.stdpath "data" .. "/theme.lua"
 
 -- Load saved header if exists
 local function load_header()
@@ -59,6 +60,31 @@ local function save_header(header)
     f:close()
   end
 end
+
+-- load saved theme if exists
+local function load_theme()
+  local f = loadfile(save_file)
+  if f then
+    local ok, theme = pcall(f)
+    if ok and theme then
+      return theme
+    end
+  end
+  return nil
+end
+
+-- Save themes
+local function save_theme(theme)
+  local f = io.open(save_file, "w")
+  if f then
+    f:write("return '" .. theme .. "'")
+    f:close()
+  end
+end
+
+-- Apply saved themes
+local saved_theme = load_theme() or "duskfox"
+vim.cmd("colorscheme " .. saved_theme)
 
 -- Pick header using helper
 function M.pick_header()
@@ -95,6 +121,7 @@ function M.pick_theme()
 
   picker_helpers.generic_picker(vim.fn.getcompletion("", "color"), "Select Colorscheme", function(theme)
     vim.cmd("colorscheme " .. theme)
+    save_theme(theme)
     vim.notify("Colorscheme set to: " .. theme)
   end)
 end
