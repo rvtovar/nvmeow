@@ -38,12 +38,12 @@ local headers = {
   },
 }
 
-local save_file = vim.fn.stdpath "data" .. "/dh.lua"
-local save_file = vim.fn.stdpath "data" .. "/theme.lua"
+local save_file_dh = vim.fn.stdpath "data" .. "/dh.lua"
+local save_file_theme = vim.fn.stdpath "data" .. "/theme.lua"
 
 -- Load saved header if exists
 local function load_header()
-  local f = loadfile(save_file)
+  local f = loadfile(save_file_dh)
   if f then
     local ok, header = pcall(f)
     if ok and headers[header] then
@@ -55,7 +55,7 @@ end
 
 -- Save header choice
 local function save_header(header)
-  local f = io.open(save_file, "w")
+  local f = io.open(save_file_dh, "w")
   if f then
     f:write("return '" .. header .. "'")
     f:close()
@@ -64,7 +64,7 @@ end
 
 -- load saved theme if exists
 local function load_theme()
-  local f = loadfile(save_file)
+  local f = loadfile(save_file_theme)
   if f then
     local ok, theme = pcall(f)
     if ok and theme then
@@ -76,7 +76,7 @@ end
 
 -- Save themes
 local function save_theme(theme)
-  local f = io.open(save_file, "w")
+  local f = io.open(save_file_theme, "w")
   if f then
     f:write("return '" .. theme .. "'")
     f:close()
