@@ -151,7 +151,7 @@ return {
               renamed = "R",
               untracked = "U",
               ignored = "I",
-              unstaged = "!",
+              unstaged = "",
               staged = "S",
               conflict = "C",
             },
@@ -230,37 +230,46 @@ return {
     end,
   },
   {
+    "EdenEast/nightfox.nvim", -- make sure you have the theme plugin installed
+    config = function()
+      vim.cmd "colorscheme nightfox" -- or duskfox, nordfox, etc.
+    end,
+  },
+  {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("bufferline").setup {
         options = {
-          numbers = "ordinal", -- show buffer numbers
-          close_command = "bdelete! %d",
-          right_mouse_command = "bdelete! %d",
-          left_mouse_command = "buffer %d",
-          middle_mouse_command = nil,
-          indicator = { icon = "▎", style = "icon" },
-          buffer_close_icon = "",
-          modified_icon = "●",
-          close_icon = "",
-          max_name_length = 30,
-          max_prefix_length = 15,
-          tab_size = 21,
-          show_buffer_icons = true,
-          show_buffer_close_icons = true,
-          show_close_icon = false,
-          show_tab_indicators = true,
-          persist_buffer_sort = true,
-          enforce_regular_tabs = false,
-          always_show_bufferline = true,
-          sort_by = "id",
+          show_buffer_close_icons = true, -- show "x" on each buffer
+          buffer_close_icon = "x", -- per-buffer close icon
+          show_close_icon = false, -- hide global close icon (recommended for minimal)
+          show_tab_indicators = false, -- hide tab indicators
+          show_buffer_icons = true, -- show filetype icons
+          separator_style = "thin", -- simple separator style
+          offsets = {
+            {
+              filetype = "neo-tree",
+              text = "", -- no text over the panel
+              separator = true, -- show a separator
+            },
+          },
+          numbers = "none", -- no numbers
+          indicator = { style = "none" }, -- no left indicator
         },
-        highlights = {},
+        highlights = {
+          buffer_selected = {
+            fg = "#cdd6f4", -- Nightfox's fg1 (adjust for your variant if needed)
+            bg = "#192330", -- Nightfox's bg1
+            bold = false,
+            italic = false,
+          },
+        },
       }
     end,
   },
+
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
