@@ -66,3 +66,9 @@ map("n", "<leader>2", ":BufferLineGoToBuffer 2<CR>", { noremap = true, silent = 
 
 -- Toggle Dashboard
 vim.keymap.set("n", "<leader>ad", ":lua require('helpers.dashboard').toggle()<CR>", { desc = "Toggle Dashboard" })
+
+-- Clear search highlighting
+
+vim.keymap.set("n", "<leader>/", function()
+  vim.cmd('let @/ = ""')
+end, { desc = "Clear search highlight" })
