@@ -6,6 +6,23 @@ local map = vim.keymap.set
 -- ========================
 -- ToggleTerm / Lazygit
 -- ========================
+
+-- Helper function to check if a shell exists
+local function shell_exists(shell)
+  return vim.fn.executable(shell) == 1
+end
+
+-- Decide which shell to use
+local preferred_shell = shell_exists "zsh" and "zsh" or "bash"
+
+-- Set Neovim's shell to the preferred shell
+vim.o.shell = preferred_shell
+
+-- For ToggleTerm, set the default shell for new terminals
+require("toggleterm").setup {
+  shell = preferred_shell,
+}
+
 local Terminal = require("toggleterm.terminal").Terminal
 
 -- Lazygit floating terminal
@@ -34,6 +51,19 @@ map(
   "<C-f><C-t>",
   "<C-\\><C-n>:ToggleTerm direction=float<CR>",
   { noremap = true, silent = true, desc = "ToggleTerm Float Close" }
+)
+
+map("n", "<C-h><C-t>", function()
+  Terminal:new({ direction = "horizontal" }):toggle()
+  vim.cmd "startinsert!" -- automatically enter terminal mode
+end, { noremap = true, silent = true, desc = "ToggleTerm Horizontal" })
+
+-- Close floating terminal from terminal mode
+map(
+  "t",
+  "<C-h><C-t>",
+  "<C-\\><C-n>:ToggleTerm direction=horizontal<CR>",
+  { noremap = true, silent = true, desc = "ToggleTerm Horizontal Close" }
 )
 
 -- ========================
