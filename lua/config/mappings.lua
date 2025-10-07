@@ -70,5 +70,8 @@ vim.keymap.set("n", "<leader>ad", ":lua require('helpers.dashboard').toggle()<CR
 -- Clear search highlighting
 
 vim.keymap.set("n", "<leader>/", function()
-  vim.cmd('let @/ = ""')
+  vim.cmd 'let @/ = ""'
 end, { desc = "Clear search highlight" })
+
+-- Example mapping in your Neovim config (init.lua)
+vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Search Buffers" })
