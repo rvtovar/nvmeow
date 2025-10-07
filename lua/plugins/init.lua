@@ -236,6 +236,10 @@ return {
     end,
   },
   {
+    "moll/vim-bbye",
+    cmd = { "Bdelete", "Bwipeout" },
+  },
+  {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
@@ -257,6 +261,9 @@ return {
           },
           numbers = "none", -- no numbers
           indicator = { style = "none" }, -- no left indicator
+          -- ADD THESE LINES for vim-bbye
+          close_command = "Bdelete! %d", -- for closing buffers (with 'x')
+          right_mouse_command = "Bdelete! %d", -- right click close
         },
         highlights = {
           buffer_selected = {
